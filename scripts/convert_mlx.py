@@ -120,7 +120,7 @@ def main() -> None:
     }
     (output / "mlx_manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     note = """---
-license: mit
+license: openrail
 base_model: Supertone/supertonic-3
 library_name: mlx
 tags:
