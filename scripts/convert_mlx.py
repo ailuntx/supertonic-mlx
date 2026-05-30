@@ -121,26 +121,49 @@ def main() -> None:
     (output / "mlx_manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     note = """---
 license: openrail
-base_model: Supertone/supertonic-3
 library_name: mlx
+pipeline_tag: text-to-speech
+base_model:
+- Supertone/supertonic-3
 tags:
 - mlx
+- apple-silicon
 - text-to-speech
 - on-device
 - audio
+language:
+- multilingual
 ---
 
-# Supertonic 3 MLX
+Part of the [Supertonic 3 MLX](https://huggingface.co/collections/mlx-community/supertonic-3-6a15767066e3067422a932d3) collection.
 
-This repository contains a community MLX conversion of [`Supertone/supertonic-3`](https://huggingface.co/Supertone/supertonic-3).
+# Supertonic 3 (MLX)
 
-The original ONNX graphs are converted into JSON topology plus NPZ initializers. Inference is executed with MLX arrays through the Supertonic-specific graph runtime in [`ailuntx/supertonic-mlx`](https://github.com/ailuntx/supertonic-mlx).
+Apple MLX graph-runtime conversion of [Supertone/supertonic-3](https://huggingface.co/Supertone/supertonic-3), a compact multilingual TTS model distributed by upstream as ONNX assets.
+
+## TL;DR
+
+| | |
+|---|---|
+| **Format** | JSON graph topology + NPZ initializers |
+| **Runtime** | [`ailuntx/supertonic-mlx`](https://github.com/ailuntx/supertonic-mlx) |
+| **Official code** | [`supertone-inc/supertonic`](https://github.com/supertone-inc/supertonic) |
+| **Sample rate** | 44.1 kHz |
+| **HF Space** | [`mlx-community/supertonic-3`](https://huggingface.co/spaces/mlx-community/supertonic-3) |
+| **Hardware** | Runs on HF Linux CPU fallback; Apple Silicon recommended locally |
+
+## Quick Start
 
 ```bash
-git clone https://github.com/ailuntx/supertonic-mlx
+hf download mlx-community/supertonic-3 --local-dir ./models/supertonic-3
+
+git clone https://github.com/ailuntx/supertonic-mlx.git
 cd supertonic-mlx
-python scripts/infer_mlx.py \\
-  --model /path/to/supertonic-3 \\
+python -m venv .venv
+.venv/bin/pip install mlx soundfile numpy
+
+.venv/bin/python scripts/infer_mlx.py \\
+  --model ./models/supertonic-3 \\
   --text "Supertonic 3 is running with MLX." \\
   --lang en \\
   --voice M1 \\
@@ -148,7 +171,32 @@ python scripts/infer_mlx.py \\
   --output output.wav
 ```
 
-The MLX graph runtime has been checked against ONNX Runtime on the official assets; per-stage maximum absolute errors are around `1e-5`.
+## Layout
+
+```text
+supertonic-3/
+|-- README.md
+|-- mlx_manifest.json
+|-- graphs/
+|-- weights/
+`-- voice_styles/
+```
+
+## Conversion Notes
+
+| Component | Source | MLX handling |
+|---|---|---|
+| ONNX graphs | `Supertone/supertonic-3` | graph topology exported to JSON |
+| initializers | official ONNX assets | saved as NPZ arrays |
+| runtime ops | Supertonic ONNX subset | implemented in `ailuntx/supertonic-mlx` with MLX arrays |
+
+## Validation
+
+The MLX graph runtime has been checked against ONNX Runtime on the official assets; per-stage maximum absolute errors are around `1e-5`. The HF Space API has returned audio successfully with real wall-time status reporting.
+
+## License and Citation
+
+Model license follows the upstream Supertonic 3 model card (`openrail`). Code/runtime changes are in [`ailuntx/supertonic-mlx`](https://github.com/ailuntx/supertonic-mlx).
 
 ## Original Model Card
 
