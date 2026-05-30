@@ -200,7 +200,22 @@ Model license follows the upstream Supertonic 3 model card (`openrail`).
 
 ## Citation
 
-Cite the upstream Supertonic 3 project for the model. Code/runtime changes are in [`ailuntx/supertonic-mlx`](https://github.com/ailuntx/supertonic-mlx).
+```bibtex
+@misc{supertonic-mlx,
+  title  = {supertonic-mlx: Apple MLX port of Supertonic 3},
+  author = {ailuntx},
+  year   = {2026},
+  url    = {https://github.com/ailuntx/supertonic-mlx},
+}
+
+@article{kim2025supertonic,
+  title   = {SupertonicTTS: Towards Highly Efficient and Streamlined Text-to-Speech System},
+  author  = {Kim, Hyeongju and Yang, Jinhyeok and Yu, Yechan and Ji, Seunghun and Morton, Jacob and Bous, Frederik and Byun, Joon and Lee, Juheon},
+  journal = {arXiv preprint arXiv:2503.23108},
+  year    = {2025},
+  url     = {https://arxiv.org/abs/2503.23108},
+}
+```
 
 ## Original Model Card
 
