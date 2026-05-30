@@ -194,9 +194,13 @@ supertonic-3/
 
 The MLX graph runtime has been checked against ONNX Runtime on the official assets; per-stage maximum absolute errors are around `1e-5`. The HF Space API has returned audio successfully with real wall-time status reporting.
 
-## License and Citation
+## License
 
-Model license follows the upstream Supertonic 3 model card (`openrail`). Code/runtime changes are in [`ailuntx/supertonic-mlx`](https://github.com/ailuntx/supertonic-mlx).
+Model license follows the upstream Supertonic 3 model card (`openrail`).
+
+## Citation
+
+Cite the upstream Supertonic 3 project for the model. Code/runtime changes are in [`ailuntx/supertonic-mlx`](https://github.com/ailuntx/supertonic-mlx).
 
 ## Original Model Card
 
