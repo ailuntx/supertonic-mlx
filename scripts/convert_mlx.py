@@ -134,11 +134,11 @@ tags:
 
 This repository contains a community MLX conversion of [`Supertone/supertonic-3`](https://huggingface.co/Supertone/supertonic-3).
 
-The original ONNX graphs are converted into JSON topology plus NPZ initializers. Inference is executed with MLX arrays through the Supertonic-specific graph runtime in [`ailuntx/supertonic`](https://github.com/ailuntx/supertonic).
+The original ONNX graphs are converted into JSON topology plus NPZ initializers. Inference is executed with MLX arrays through the Supertonic-specific graph runtime in [`ailuntx/supertonic-mlx`](https://github.com/ailuntx/supertonic-mlx).
 
 ```bash
-git clone https://github.com/ailuntx/supertonic
-cd supertonic
+git clone https://github.com/ailuntx/supertonic-mlx
+cd supertonic-mlx
 python scripts/infer_mlx.py \\
   --model /path/to/supertonic-3 \\
   --text "Supertonic 3 is running with MLX." \\
